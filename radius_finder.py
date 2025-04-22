@@ -25,7 +25,8 @@ def main():
     home = os.getcwd()
     # variants = ["DUST", "DUST2", "DUST3", "BOHEA", "BOP", "BOPF", "BOPF1", "F1", "F2", "PF", "PF2", "PF3", "BP"]
     # img_path = home + "\\Data_21-09-2023[1]\\Warna\\" + variants[0] + "_1-1.jpg"
-    img_path = home + "//Data_NEW//BOHEA//BOHEA_005.jpg"
+    # img_path = home + "//Data_NEW//BOHEA//BOHEA_005.jpg"
+    img_path = "BOHEA_test1.jpg"
     img = cv.imread(img_path) # read image
 
     if img is None:         # check if image exist
