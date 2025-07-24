@@ -32,23 +32,23 @@ def crop_trackbar(height, width, px, py, radius, src):
 
     # cv.imshow("canvas", canvas)
     # cv.imshow("crop", cropped)
-    return cropped
+    return cropped, canvas
 
-def crop_mouse(event, x, y, img):
-    if event == cv.EVENT_LBUTTONDOWN:
-        print(f"Left mouse button clicked at ({x}, {y})")
-        cx, cy = x, y
-    elif event == cv.EVENT_RBUTTONDOWN:
-        print(f"Right mouse button clicked at ({x}, {y})")
-        px, py = x, y
-
-    canvas = np.zeros((img[0], img[1], img[2]), dtype=np.uint8)
-    radius = math.sqrt((px - cx)^2 + (py - cy)^2)
-    cv.circle()
+# def crop_mouse(event, x, y, img):
+#     if event == cv.EVENT_LBUTTONDOWN:
+#         print(f"Left mouse button clicked at ({x}, {y})")
+#         cx, cy = x, y
+#     elif event == cv.EVENT_RBUTTONDOWN:
+#         print(f"Right mouse button clicked at ({x}, {y})")
+#         px, py = x, y
+#
+#     canvas = np.zeros((img[0], img[1], img[2]), dtype=np.uint8)
+#     radius = math.sqrt((px - cx)^2 + (py - cy)^2)
+#     cv.circle()
 
 def main():
     home = os.path.expanduser("~")
-    img_path = home + "\\Repositories 2\\Project-INSTEAD\\Data_21-09-2023[1]\\Warna\\DUST_1-1.jpg"
+    img_path = home + "\\Repositories\\Skripsi\\Data_NEW\\BOHEA\\BOHEA_001.jpg"
     img = cv.imread(img_path)
 
     height = img.shape[0]
@@ -72,7 +72,7 @@ def main():
         img_copy = img.copy()
         cv.circle(img_copy, (x,y), radius, [0,0,255], 2)
         
-        crop_img = crop_trackbar(height, width, x, y, radius, img)
+        crop_img, mask = crop_trackbar(height, width, x, y, radius, img)
 
 
         cv.imshow("crop trackbar", img_copy)
@@ -83,8 +83,10 @@ def main():
             break
         elif key == ord('c'):
             getHist(crop_img)
-
-    
+        elif key == ord('s'):
+            cv.imwrite("mask.jpg", mask)
+            cv.imwrite("cropped.jpg", crop_img)
+            print("canvas and cropped image is saved!")
 
 
 if __name__ == "__main__":

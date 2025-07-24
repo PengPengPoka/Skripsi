@@ -21,16 +21,16 @@ def main():
     row = df.iloc[0]
 
     # Camera Parameters
-    # cap.set(cv.CAP_PROP_SETTINGS, 0)
-    cap.set(cv.CAP_PROP_BRIGHTNESS, row['brightness'])
-    cap.set(cv.CAP_PROP_CONTRAST, row['contrast'])
-    cap.set(cv.CAP_PROP_SATURATION, row['saturation'])
-    cap.set(cv.CAP_PROP_SHARPNESS, row['sharpness'])
-    cap.set(cv.CAP_PROP_WHITE_BALANCE_BLUE_U, row['white_balance'])
-    cap.set(cv.CAP_PROP_GAIN, row['gain'])
-    cap.set(cv.CAP_PROP_ZOOM, row['zoom'])
-    cap.set(cv.CAP_PROP_FOCUS, row['focus'])
-    cap.set(cv.CAP_PROP_EXPOSURE, row['exposure'])
+    cap.set(cv.CAP_PROP_SETTINGS, 1)
+    # cap.set(cv.CAP_PROP_BRIGHTNESS, row['brightness'])
+    # cap.set(cv.CAP_PROP_CONTRAST, row['contrast'])
+    # cap.set(cv.CAP_PROP_SATURATION, row['saturation'])
+    # cap.set(cv.CAP_PROP_SHARPNESS, row['sharpness'])
+    # cap.set(cv.CAP_PROP_WHITE_BALANCE_BLUE_U, row['white_balance'])
+    # cap.set(cv.CAP_PROP_GAIN, row['gain'])
+    # cap.set(cv.CAP_PROP_ZOOM, row['zoom'])
+    # cap.set(cv.CAP_PROP_FOCUS, row['focus'])
+    # cap.set(cv.CAP_PROP_EXPOSURE, row['exposure'])
     cap.set(cv.CAP_PROP_FRAME_WIDTH, 640)
     cap.set(cv.CAP_PROP_FRAME_HEIGHT, 480)
 
