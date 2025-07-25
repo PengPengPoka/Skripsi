@@ -15,7 +15,7 @@ def ColorConverter(directory, variant, total_images, output_dir, crop_mask, exte
         variant     : variant of tea
         total_images: total images in a variant
         output_dir  : output directory to store the processed images
-        crop_masl   : the mask used for cropping the image
+        crop_mask   : the mask used for cropping the image
         extention   : file format for the image, defaulted to jpg
     """
 

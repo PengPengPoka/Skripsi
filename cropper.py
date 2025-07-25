@@ -13,7 +13,7 @@ def ColorConverter(directory, variant, total_images, output_dir, crop_mask, exte
         variant     : variant of tea
         total_images: total images in a variant
         output_dir  : output directory to store the processed images
-        crop_masl   : the mask used for cropping the image
+        crop_mask   : the mask used for cropping the image
         extention   : file format for the image, defaulted to jpg
     """
 
@@ -22,6 +22,7 @@ def ColorConverter(directory, variant, total_images, output_dir, crop_mask, exte
 
     # parent directory | location of processed data
     processed_variant_path = os.path.join(output_dir, variant)
+    os.makedirs(processed_variant_path)
 
     # child directory
     # structure of directory
@@ -40,7 +41,6 @@ def ColorConverter(directory, variant, total_images, output_dir, crop_mask, exte
 
         if image is not None:
             print(f"{filename} image loaded")
-
             blurred_image = cv.medianBlur(image, 5)             # blurring by median blur (5x5)
             cropped_image = cv.bitwise_and(blurred_image, crop_mask)
             cv.imwrite(os.path.join(processed_variant_path, filename), cropped_image)
