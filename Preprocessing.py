@@ -8,7 +8,7 @@ import cv2 as cv
 import os
 import time
 
-def ColorConverter(directory, variant, total_images, output_dir, crop_mask, extention='.jpg'):
+def ColorConverter(directory, variant, total_images, output_dir, crop_mask, extention='.jpg', output_extention='.tif'):
     """
     args:
         directory   : directory containing the files of the tea images
