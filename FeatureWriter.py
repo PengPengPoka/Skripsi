@@ -14,10 +14,15 @@ def ColorFeatureWriter(data_path: str, mode, output_path: str, output_extention=
     for csv_file in csv_files:
         data_df = pd.read_csv(csv_file)
         
+        # max_val = data_df.max()
+        # min_val = data_df.min()
+        
         color_features = np.concatenate([
             data_df.mean().values,
             data_df.std().values,
             data_df.median().values,
+            # max_val,
+            # min_val,
             data_df.mode().iloc[0].values       # make mode shape from (1,3) to (3,)
         ])
         
@@ -27,18 +32,24 @@ def ColorFeatureWriter(data_path: str, mode, output_path: str, output_extention=
             columns =  ['B_mean','G_mean','R_mean',
                         'B_std', 'G_std', 'R_std',
                         'B_median', 'G_median', 'R_median',
+                        # 'B_max', 'G_max', 'R_max',
+                        # 'B_min', 'G_min', 'R_min',
                         'B_mode', 'G_mode', 'R_mode']
             
         elif mode == 'HSV':
             columns = ['H_mean','S_mean','V_mean',
                        'H_std', 'S_std', 'V_std',
                        'H_median', 'S_median', 'V_median',
+                    #    'H_max', 'S_max', 'V_max',
+                    #    'H_min', 'S_min', 'V_min',
                        'H_mode', 'S_mode', 'V_mode']
             
         elif mode == 'LAB':
             columns = ['L_mean','A_mean','B_mean',
                        'L_std', 'A_std', 'B_std',
                        'L_median', 'A_median', 'B_median',
+                    #    'L_max', 'A_max', 'B_max',
+                    #    'L_min', 'A_min', 'B_min',
                        'L_mode', 'A_mode', 'B_mode']
     
         color_features_df = pd.DataFrame(color_features, columns=columns)
@@ -86,20 +97,37 @@ def StringSplitter(filename: str):
     return main
         
 def main():
-    CSV_DIR = Path('Tea Score Color Data').resolve()
+    # for all data
+    # CSV_DIR = Path('Tea Score Color Data').resolve()
+    
+    # TEA_SCORE = ['Score 1', 'Score 2', 'Score 3', 'Score 4']
+    # COLOR_MODE = ['RGB', 'HSV', 'LAB']
+    
+    # OUTPUT_DIR = Path('Tea Score Feature Data').resolve()
+    # OUTPUT_DIR.mkdir(exist_ok=True)
+    
+    # OUTPUT_COLOR_DIR = OUTPUT_DIR / 'Color Feature Data'
+    # OUTPUT_COLOR_DIR.mkdir(exist_ok=True)
+    
+    # IMAGE_DIR = Path('Preprocessed Tea Score Images').resolve()
+    # OUTPUT_GLCM_DIR = OUTPUT_DIR / 'GLCM Feature Data'
+    # OUTPUT_GLCM_DIR.mkdir(exist_ok=True)
+    
+    # for partition data
+    ROOT_DIR = Path('Tea Score Images - partition').resolve()
+    CSV_DIR = ROOT_DIR / 'Partition color data'
+    IMAGE_DIR = ROOT_DIR / 'Preprocessed partition images'
+    
+    OUTPUT_DIR = ROOT_DIR / 'Feature data'
+    OUTPUT_COLOR_DIR = OUTPUT_DIR / 'Color feature data'
+    OUTPUT_GLCM_DIR = OUTPUT_DIR / 'GLCM feature data'
+    
+    OUTPUT_DIR.mkdir(exist_ok=True)
+    OUTPUT_COLOR_DIR.mkdir(exist_ok=True)
+    OUTPUT_GLCM_DIR.mkdir(exist_ok=True)
     
     TEA_SCORE = ['Score 1', 'Score 2', 'Score 3', 'Score 4']
     COLOR_MODE = ['RGB', 'HSV', 'LAB']
-    
-    OUTPUT_DIR = Path('Tea Score Feature Data').resolve()
-    OUTPUT_DIR.mkdir(exist_ok=True)
-    
-    OUTPUT_COLOR_DIR = OUTPUT_DIR / 'Color Feature Data'
-    OUTPUT_COLOR_DIR.mkdir(exist_ok=True)
-    
-    IMAGE_DIR = Path('Preprocessed Tea Score Images').resolve()
-    OUTPUT_GLCM_DIR = OUTPUT_DIR / 'GLCM Feature Data'
-    OUTPUT_GLCM_DIR.mkdir(exist_ok=True)
     
     start = time()
     

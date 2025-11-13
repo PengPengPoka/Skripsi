@@ -7,7 +7,7 @@ def Counter(path: str):
     print(f'tea images in {path} directory: {len(images)}')
 
 def main():
-    DIR = Path('Tea Score Image Data').resolve()
+    DIR = Path('Tea Score Images - partition').resolve()
     TEA_SCORES = ['Score 1', 'Score 2', 'Score 3', 'Score 4']
     
     for score in TEA_SCORES:

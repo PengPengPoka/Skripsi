@@ -54,8 +54,15 @@ def getROIData(src):
     return roi_data
 
 def main():
-    DATA_DIR = Path('Preprocessed Tea Score Images').resolve()
-    OUTPUT_DIR = Path('Tea Score Color Data')
+    # for all data
+    # DATA_DIR = Path('Tea Score Images - partition').resolve() / 'Preprocessed partition images' 
+    # OUTPUT_DIR = Path('Tea Score Color Data')
+    # OUTPUT_DIR.mkdir(exist_ok=True)
+
+    # for partition data
+    ROOT_DIR = Path('Tea Score Images - partition').resolve()
+    DATA_DIR = ROOT_DIR / 'Preprocessed partition images'
+    OUTPUT_DIR = ROOT_DIR / 'Partition color data'
     OUTPUT_DIR.mkdir(exist_ok=True)
 
     TEA_SCORE = ['Score 1', 'Score 2', 'Score 3', 'Score 4']

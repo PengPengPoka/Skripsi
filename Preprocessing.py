@@ -12,9 +12,9 @@ import time
 from pathlib import Path
 
 def Preprocessing(src_path: str,
-                  radius,
+                  radius: int,
                   color_mode,
-                  output_dst,
+                  output_dst: str,
                   output_extention='.tif'):
     image_paths = list(src_path.glob('*.jpg'))
     failed_images = []
@@ -125,8 +125,8 @@ def getCircles(edge_src, original_src, param1 = 100, param2 = 50, minRadius = 0,
     return center_coor
 
 def main():
-    DATA_DIR = Path('Tea Score').resolve()
-    OUTPUT_DIR = Path('Preprocessed Tea Score Images')
+    DATA_DIR = Path('Tea Score Images - partition').resolve()
+    OUTPUT_DIR = DATA_DIR / 'Preprocessed partition images'
     OUTPUT_DIR.mkdir(exist_ok=True)
     
     TEA_SCORE = ['Score 1', 'Score 2', 'Score 3', 'Score 4']
@@ -144,11 +144,7 @@ def main():
             mode_output_dir = score_output_dir / f"{score}_{mode}"
             mode_output_dir.mkdir(exist_ok=True)
             
-            Preprocessing(image_dir,
-                          100,
-                          score,
-                          mode,
-                          mode_output_dir)
+            Preprocessing(image_dir, 100, mode, mode_output_dir)
     
     process_end = time.time()
     processing_time = process_end - process_start
